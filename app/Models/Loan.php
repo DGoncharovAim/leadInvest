@@ -11,16 +11,6 @@ class Loan
 {
 
     /**
-     * Loan status enable
-     */
-    const LOAN_STATUS_ENABLE = 1;
-
-    /**
-     * Loan status enable
-     */
-    const LOAN_STATUS_DISABLE = 2;
-
-    /**
      * @var array
      */
     private $tranches = [];

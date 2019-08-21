@@ -36,7 +36,7 @@ $loan->addTranches($tranche_1);
 $loan->addTranches($tranche_2);
 
 try {
-    $transaction_1 = new Transaction(1000, new DateTime('03.10.2015'), $tranche_1, $investor_1);
+    $transaction_1 = new Transaction(600, new DateTime('03.10.2015'), $tranche_1, $investor_1);
     $isPay_1 = $transaction_1->payByTranche();
 } catch (Exception $e) {
     error_log($e->getMessage(), 3, "./logs/exceptions.log");
@@ -62,3 +62,5 @@ try {
 } catch (Exception $e) {
     error_log($e->getMessage(), 3, "./logs/exceptions.log");
 }
+
+echo $investor_3->calculateMonthPercentage(10);

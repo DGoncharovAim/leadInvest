@@ -69,5 +69,19 @@ class Investor
         unset($this->transactions[$id]);
     }
 
-
+    function calculateMonthPercentage($month) {
+        $extraMoney = 0;
+        foreach ($this->transactions as $transaction) {
+            $date = explode('.', $transaction->getPayDate()->format('d.m.Y') );
+            if (isset($date[1]) && isset($date[2]) && $date[1] == $month) {
+                $allDays =  cal_days_in_month(CAL_GREGORIAN, $month, (int)$date[2]);
+                $trancheDays = intval($allDays) - intval($date[0]) + 1;
+                $percentage = $transaction->getTranche()->getPercentage();
+                $monthPercentage = ($trancheDays * $percentage) / $allDays;
+                $money = ($transaction->getAmount()/100) * $monthPercentage;
+                $extraMoney += number_format($money, 2);
+            }
+        }
+        return $extraMoney;
+    }
 }
