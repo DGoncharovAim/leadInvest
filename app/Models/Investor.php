@@ -18,8 +18,18 @@ class Investor
      */
     private $transactions = [];
 
+    /**
+     * @var DateHelper
+     */
+    private $dateHelper;
+
+    /**
+     * Investor constructor.
+     * @param VirtualWallet $virtualWallet
+     */
     public function __construct(VirtualWallet $virtualWallet)
     {
+        $this->dateHelper = new DateHelper();
         $this->virtualWallet = $virtualWallet;
     }
 
@@ -64,17 +74,24 @@ class Investor
         $this->transactions[] = $transaction;
     }
 
+    /**
+     * @param $id
+     */
     public function removeTransactions($id): void
     {
         unset($this->transactions[$id]);
     }
 
-    function calculateMonthPercentage($month) {
+    /**
+     * @param $month
+     * @return float
+     */
+    public function calculateMonthPercentage($month): float {
         $extraMoney = 0;
         foreach ($this->transactions as $transaction) {
             $date = explode('.', $transaction->getPayDate()->format('d.m.Y') );
             if (isset($date[1]) && isset($date[2]) && $date[1] == $month) {
-                $allDays =  cal_days_in_month(CAL_GREGORIAN, $month, (int)$date[2]);
+                $allDays =  $this->dateHelper->getAllDaysForMonth( $month, (int)$date[2]);
                 $trancheDays = intval($allDays) - intval($date[0]) + 1;
                 $percentage = $transaction->getTranche()->getPercentage();
                 $monthPercentage = ($trancheDays * $percentage) / $allDays;
