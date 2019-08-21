@@ -23,7 +23,7 @@ class Loan
     /**
      * @var array
      */
-    private $tranches;
+    private $tranches = [];
 
     /**
      * @var int
@@ -42,51 +42,35 @@ class Loan
 
     /**
      * Loan constructor.
-     * @param int $startDate
-     * @param int $endDate
+     * @param \DateTime $startDate
+     * @param \DateTime $endDate
      */
-    public function __construct(int $startDate, int $endDate)
+    public function __construct(\DateTime $startDate, \DateTime $endDate)
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
     }
 
     /**
-     * @return array
-     */
-    public function getTranches(): array
-    {
-        return $this->tranches;
-    }
-
-    /**
-     * @param Tranche $tranche
-     */
-    public function setTranche(Tranche $tranche): void
-    {
-        $this->tranches[] = $tranche;
-    }
-
-    /**
      * @return mixed
      */
-    public function getStartDate()
+    public function getStartDate(): \DateTime
     {
         return $this->startDate;
     }
 
     /**
-     * @param int $startDate
+     * @param \DateTime $startDate
      */
-    public function setStartDate(int $startDate): void
+    public function setStartDate(\DateTime $startDate): void
     {
         $this->startDate = $startDate;
     }
 
     /**
-     * @return int
+     * @return \DateTime
      */
-    public function getEndDate(): int
+    public function getEndDate(): \DateTime
     {
         return $this->endDate;
     }
@@ -94,7 +78,7 @@ class Loan
     /**
      * @param mixed $endDate
      */
-    public function setEndDate(int $endDate): void
+    public function setEndDate(\DateTime $endDate): void
     {
         $this->endDate = $endDate;
     }
@@ -115,4 +99,38 @@ class Loan
         $this->status = $status;
     }
 
+    /**
+     * @return array
+     */
+    public function getTranches(): array
+    {
+        return $this->tranches;
+    }
+
+    /**
+     * @param int $id
+     * @return Tranche
+     */
+    public function getTranche(int $id): Tranche
+    {
+        return $this->tranches[$id];
+    }
+
+    /**
+     * @param Tranche $tranche
+     */
+    public function addTranches(Tranche $tranche): void
+    {
+        $this->tranches[] = $tranche;
+    }
+
+    public function removeTranche(int $id): void
+    {
+        unset($this->tranches[$id]);
+    }
+
+    public function isInPayedTime(\DateTime $payDate): bool
+    {
+        return (($payDate >= $this->startDate) && ($payDate <= $this->endDate));
+    }
 }

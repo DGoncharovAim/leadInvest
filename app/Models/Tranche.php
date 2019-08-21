@@ -24,9 +24,15 @@ class Tranche
      */
     private $currentAmount;
 
-    public function __construct(float $percentage)
+    /**
+     * @var Loan
+     */
+    private $loan;
+
+    public function __construct(float $percentage, int $maxAmount)
     {
         $this->setPercentage($percentage);
+        $this->setMaxAmount($maxAmount);
     }
 
     /**
@@ -70,11 +76,34 @@ class Tranche
     }
 
     /**
-     * @param float $currentAmount
+     * @param float $amount
+     * @return bool
      */
-    public function setCurrentAmount(float $currentAmount): void
+    public function addToCurrentAmount(float $amount): bool
     {
-        $this->currentAmount = $currentAmount;
+        $isPayed = false;
+        if (($this->currentAmount + $amount) <= $this->maxAmount) {
+            $this->currentAmount = $this->currentAmount + $amount;
+            $isPayed = true;
+        }
+
+        return $isPayed;
+    }
+
+    /**
+     * @return Loan
+     */
+    public function getLoan(): Loan
+    {
+        return $this->loan;
+    }
+
+    /**
+     * @param Loan $loan
+     */
+    public function setLoan(Loan $loan): void
+    {
+        $this->loan = $loan;
     }
 
 }

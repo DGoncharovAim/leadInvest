@@ -13,6 +13,11 @@ class Investor
      */
     private $virtualWallet;
 
+    /**
+     * @var array
+     */
+    private $transactions = [];
+
     public function __construct(VirtualWallet $virtualWallet)
     {
         $this->virtualWallet = $virtualWallet;
@@ -33,4 +38,36 @@ class Investor
     {
         $this->virtualWallet = $virtualWallet;
     }
+
+    /**
+     * @return array
+     */
+    public function getTransactions(): array
+    {
+        return $this->transactions;
+    }
+
+    /**
+     * @param $id
+     * @return Transaction
+     */
+    public function getTransaction($id): Transaction
+    {
+        return $this->transactions[$id];
+    }
+
+    /**
+     * @param Transaction $transaction
+     */
+    public function addTransaction(Transaction $transaction): void
+    {
+        $this->transactions[] = $transaction;
+    }
+
+    public function removeTransactions($id): void
+    {
+        unset($this->transactions[$id]);
+    }
+
+
 }
