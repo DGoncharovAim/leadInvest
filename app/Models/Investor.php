@@ -1,20 +1,27 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace Model;
+namespace App\Models;
 
+/**
+ * Class Investor
+ * @package App\Models
+ */
 class Investor
 {
+    /**
+     * @var VirtualWallet
+     */
     private $virtualWallet;
 
     public function __construct(VirtualWallet $virtualWallet)
     {
-        $this->setWallet($virtualWallet);
+        $this->virtualWallet = $virtualWallet;
     }
 
     /**
      * @return VirtualWallet
      */
-    public function getWallet()
+    public function getWallet(): VirtualWallet
     {
         return $this->virtualWallet;
     }
@@ -22,10 +29,8 @@ class Investor
     /**
      * @param VirtualWallet $virtualWallet
      */
-    public function setWallet($virtualWallet)
+    public function setWallet($virtualWallet): void
     {
         $this->virtualWallet = $virtualWallet;
     }
-
-
 }

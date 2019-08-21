@@ -2,7 +2,7 @@
 
 require_once './vendor/autoload.php';
 
-use Model\Loan;
+use App\Models\Loan;
 
 $test = new Loan();
 

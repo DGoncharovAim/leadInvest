@@ -1,20 +1,45 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace Model;
 
+namespace App\Models;
+
+/**
+ * Class Loan
+ * @package App\Models
+ */
 class Loan
 {
+
+    /**
+     * @var int
+     */
     private $limit;
+
+    /**
+     * @var array
+     */
     private $tranches;
+
+    /**
+     * @var \DateTime
+     */
     private $startDate;
+
+    /**
+     * @var \DateTime
+     */
     private $endDate;
+
+    /**
+     * @var bool
+     */
     private $status;
 
     public function __construct(int $limit, \DateTime $startDate, \DateTime $endDate)
     {
-        $this->setLimit($limit);
-        $this->setStartDate($startDate);
-        $this->setEndDate($endDate);
+        $this->limit = $limit;
+        $this->startDate = $startDate;
+        $this->endDate = $endDate;
     }
 
     /**

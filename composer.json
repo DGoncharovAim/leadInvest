@@ -1,21 +1,23 @@
 {
     "name": "aim/lendinvest",
+    "type": "project",
     "description": "Test project",
     "require": {
         "phpunit/phpunit": "^8.3"
     },
+    "license": "MIT",
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
     "autoload": {
-        "classmap": [
-            "src/"
-        ],
         "psr-4": {
-            "Model\\": "model"
+            "App\\": "app/"
         }
     },
-    "authors": [
-        {
-            "name": "Denis",
-            "email": "d.goncharov@aimprosoft.com"
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
-    ]
+    }
 }
