@@ -78,6 +78,7 @@ class Tranche
     /**
      * @param float $amount
      * @return bool
+     * @throws \Exception
      */
     public function addToCurrentAmount(float $amount): bool
     {
@@ -85,6 +86,8 @@ class Tranche
         if (($this->currentAmount + $amount) <= $this->maxAmount) {
             $this->currentAmount = $this->currentAmount + $amount;
             $isPayed = true;
+        } else {
+            throw new \Exception('Tranche money limit is exceeded.' . PHP_EOL);
         }
 
         return $isPayed;

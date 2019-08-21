@@ -131,6 +131,10 @@ class Loan
 
     public function isInPayedTime(\DateTime $payDate): bool
     {
-        return (($payDate >= $this->startDate) && ($payDate <= $this->endDate));
+        if (($payDate >= $this->startDate) && ($payDate <= $this->endDate)) {
+            return true;
+        } else {
+            throw new \Exception('Loan pay is out of date.' . PHP_EOL);
+        }
     }
 }

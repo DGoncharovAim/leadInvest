@@ -29,7 +29,7 @@ class Transaction
 
     public function __construct(int $amount,\DateTime $payDate, Tranche $tranche, Investor $investor)
     {
-        $this->setAmount($amount);
+        $this->setAmount($investor->getWallet()->getAmount($amount));
         $this->setPayDate($payDate);
         $this->setTranche($tranche);
         $this->setInvestor($investor);
@@ -101,6 +101,7 @@ class Transaction
 
     /**
      * @return bool
+     * @throws \Exception
      */
     public function payByTranche(): bool
     {

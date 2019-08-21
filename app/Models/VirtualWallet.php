@@ -11,7 +11,7 @@ class VirtualWallet
     /**
      * @var float
      */
-    private $amount;
+    private $amount = 0;
 
     /**
      * VirtualWallet constructor.
@@ -19,23 +19,36 @@ class VirtualWallet
      */
     public function __construct(float $amount)
     {
-        $this->setAmount($amount);
+        $this->addAmount($amount);
+    }
+
+    public function showAmount(): float
+    {
+
     }
 
     /**
+     * @param int $amount
      * @return float
+     * @throws \Exception
      */
-    public function getAmount(): float
+    public function getAmount(int $amount): float
     {
-        return $this->amount;
+        if(($this->amount - $amount) < 0) {
+            throw new \Exception('Not enough money in wallet' . PHP_EOL);
+        }
+
+        $this->amount = $this->amount - $amount;
+
+        return $amount;
     }
 
     /**
      * @param float $amount
      */
-    public function setAmount(float $amount): void
+    public function addAmount(float $amount): void
     {
-        $this->amount = $amount;
+        $this->amount += $amount;
     }
 
 }
