@@ -1,62 +1,78 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Models;
 
+/**
+ * Class Tranche
+ * @package App\Models
+ */
 class Tranche
 {
+
+    /**
+     * @var float
+     */
     private $maxAmount;
+
+    /**
+     * @var float
+     */
     private $percentage;
+
+    /**
+     * @var float
+     */
     private $currentAmount;
 
-    public function __construct($percentage)
+    public function __construct(float $percentage)
     {
         $this->setPercentage($percentage);
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getMaxAmount()
+    public function getMaxAmount(): float
     {
         return $this->maxAmount;
     }
 
     /**
-     * @param mixed $maxAmount
+     * @param float $maxAmount
      */
-    public function setMaxAmount($maxAmount): void
+    public function setMaxAmount(float $maxAmount): void
     {
         $this->maxAmount = $maxAmount;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getPercentage()
+    public function getPercentage(): float
     {
         return $this->percentage;
     }
 
     /**
-     * @param mixed $percentage
+     * @param float $percentage
      */
-    public function setPercentage($percentage): void
+    public function setPercentage(float $percentage): void
     {
         $this->percentage = $percentage;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getCurrentAmount()
+    public function getCurrentAmount(): float
     {
         return $this->currentAmount;
     }
 
     /**
-     * @param mixed $currentAmount
+     * @param float $currentAmount
      */
-    public function setCurrentAmount($currentAmount): void
+    public function setCurrentAmount(float $currentAmount): void
     {
         $this->currentAmount = $currentAmount;
     }

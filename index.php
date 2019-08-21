@@ -4,6 +4,5 @@ require_once './vendor/autoload.php';
 
 use App\Models\Loan;
 
-$test = new Loan();
-
-var_dump($test);
+$secondsInday = 86400;
+$loan = new Loan(time(), time() + $secondsInday);

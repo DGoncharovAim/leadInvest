@@ -11,9 +11,14 @@ class Loan
 {
 
     /**
-     * @var int
+     * Loan status enable
      */
-    private $limit;
+    const LOAN_STATUS_ENABLE = 1;
+
+    /**
+     * Loan status enable
+     */
+    const LOAN_STATUS_DISABLE = 2;
 
     /**
      * @var array
@@ -21,57 +26,45 @@ class Loan
     private $tranches;
 
     /**
-     * @var \DateTime
+     * @var int
      */
     private $startDate;
 
     /**
-     * @var \DateTime
+     * @var int
      */
     private $endDate;
 
     /**
-     * @var bool
+     * @var int
      */
     private $status;
 
-    public function __construct(int $limit, \DateTime $startDate, \DateTime $endDate)
+    /**
+     * Loan constructor.
+     * @param int $startDate
+     * @param int $endDate
+     */
+    public function __construct(int $startDate, int $endDate)
     {
-        $this->limit = $limit;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getLimit()
-    {
-        return $this->limit;
-    }
-
-    /**
-     * @param mixed $limit
-     */
-    public function setLimit($limit): void
-    {
-        $this->limit = $limit;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTranches()
+    public function getTranches(): array
     {
         return $this->tranches;
     }
 
     /**
-     * @param mixed $tranches
+     * @param Tranche $tranche
      */
-    public function setTranches($tranches): void
+    public function setTranche(Tranche $tranche): void
     {
-        $this->tranches = $tranches;
+        $this->tranches[] = $tranche;
     }
 
     /**
@@ -83,17 +76,17 @@ class Loan
     }
 
     /**
-     * @param mixed $startDate
+     * @param int $startDate
      */
-    public function setStartDate($startDate): void
+    public function setStartDate(int $startDate): void
     {
         $this->startDate = $startDate;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getEndDate()
+    public function getEndDate(): int
     {
         return $this->endDate;
     }
@@ -101,23 +94,23 @@ class Loan
     /**
      * @param mixed $endDate
      */
-    public function setEndDate($endDate): void
+    public function setEndDate(int $endDate): void
     {
         $this->endDate = $endDate;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getStatus()
+    public function getStatus(): int
     {
         return $this->status;
     }
 
     /**
-     * @param mixed $status
+     * @param int $status
      */
-    public function setStatus($status): void
+    public function setStatus(int $status): void
     {
         $this->status = $status;
     }
